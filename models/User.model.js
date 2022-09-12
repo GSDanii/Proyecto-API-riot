@@ -1,20 +1,48 @@
 const { Schema, model } = require("mongoose");
+const bcrypt = require('bcryptjs');
+const { ROLES, IRON } = require('../const/user.const');
+const SALT = +process.env.SALT;
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      unique: true,
+      required: true
     },
-    password: String,
+    password: {
+      type: String,
+      required: true
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: ROLES,
+      default: IRON
+    },
+    summonerName: {
+      type: String,
+      unique: true,
+    },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
 
-const User = model("User", userSchema);
+userSchema.pre('save', function (next) {
+  if (this.isNew) {
+    const genSalt = bcrypt.genSaltSync(SALT);
+    const hashPassword = bcrypt.hashSync(this.password, genSalt);
+    this.password = hashPassword;
+  }
+  next();
+})
 
-module.exports = User;
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+}
+
+const UserModel = model("User", userSchema);
+
+module.exports = UserModel;

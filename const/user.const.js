@@ -7,7 +7,6 @@ const DIAMOND = 'DIAMOND';
 const MASTER = 'MASTER';
 const GRANDMASTER = 'GRANDMASTER';
 const CHALLENGER = 'CHALLENGER';
-
 const ROLES = [IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER];
 
 module.exports = {
@@ -19,6 +18,7 @@ module.exports = {
     DIAMOND,
     MASTER,
     GRANDMASTER,
-    CHALLENGER
+    CHALLENGER,
+    ROLES
 };
 

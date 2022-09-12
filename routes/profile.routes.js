@@ -3,9 +3,10 @@ const UserModel = require('../models/User.model')
 
 
 
+
 //GET ROUTES
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', roleValidation(ROLES), (req, res, next) => {
     UserModel.findById(req.params.id)
         .then((foundUser) => {
             res.render('profile/myProfile', foundUser)

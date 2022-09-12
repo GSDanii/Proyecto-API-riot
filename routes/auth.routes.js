@@ -9,6 +9,13 @@ router.get('/signUp', (req, res, next) => res.render('auth/signup'))
 
 router.get('/login', (req, res, next) => res.render('auth/login'))
 
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    // req.app.locals.name = null
+    // req.app.locals.disabled = 'disabled'
+    res.redirect('/auth/login');
+});
+
 
 
 

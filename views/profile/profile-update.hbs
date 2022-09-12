@@ -1,0 +1,10 @@
+<h2>Estas editando {{username}}</h2>
+
+
+<form action="/profile/{{_id}}/update" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">username:</label>
+        <input type="text" name="username" value="{{username}}" class="form-control w-25">
+    </div>
+    <button type="submit" class="btn btn-primary">Update!</button>
+</form>

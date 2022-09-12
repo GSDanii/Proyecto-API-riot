@@ -18,6 +18,9 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
+const session = require('./config/session.config');
+session(app);
+
 // default value for title local
 const capitalized = require("./utils/capitalized");
 const projectName = "Proyecto-Api-Riot";

@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/Proyecto-Api-Riot";
 
+
+
 mongoose
   .connect(MONGO_URI)
   .then((x) => {

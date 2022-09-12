@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const UserModel = require('../models/User.model')
-
-
+const { roleValidation, userValidation } = require('../middlewares/roles.middlewares');
+const { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, ROLES } = require("../const/user.const")
 
 
 //GET ROUTES
@@ -20,18 +20,19 @@ router.get("/:id/update", (req, res, next) => {
         .catch((err) => next(err))
 })
 
+router.get("/:id/delete", (req, res, next) => {
+    UserModel.findByIdAndDelete(req.params.id)
+        .then(() => res.redirect('/auth/signup'))
+        .catch((err) => next(err))
+})
 
 //POST ROUTES
 
 router.post("/:id/update", (req, res, next) => {
-    const { username } = req.body
+    const { username, summonerName } = req.body
 
-    const updatedUser = {
-        username,
-    }
-
-    UserModel.findByIdAndUpdate(req.params.id, updatedUser)
-        .then(() => res.redirect('/profile/myProfile'))
+    UserModel.findByIdAndUpdate(req.params.id, { username, summonerName })
+        .then((user) => res.redirect(`/profile/${user._id}`))
         .catch((err) => next(err))
 })
 

@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
         if (user) {
             if (user.comparePassword(password)) {
                 req.session.user = user;
-                res.redirect('/');
+                res.redirect(`/profile/${user._id}`);
             } else {
                 res.render('/auth/login', {
                     messageError: 'Username or password invalid',

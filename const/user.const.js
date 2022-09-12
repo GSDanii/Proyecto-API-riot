@@ -19,6 +19,7 @@ module.exports = {
     DIAMOND,
     MASTER,
     GRANDMASTER,
-    CHALLENGER
+    CHALLENGER,
+    ROLES
 };
 

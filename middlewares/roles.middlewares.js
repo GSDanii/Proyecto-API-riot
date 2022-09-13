@@ -10,7 +10,6 @@ const roleValidation = (roles) => (req, res, next) => {
 
 const userValidation = (roles) => (req, res, next) => {
 
-    const user = req.session.user;
 
     if (req.session.user === req.params.id && roles.includes(req.session.user.role)) {
         console.log('estas dentrooooooo')

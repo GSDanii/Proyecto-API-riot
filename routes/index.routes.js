@@ -18,7 +18,7 @@ router.get("/championsList", roleValidation(ROLES), (req, res, next) => {
       let nameAndImg = champions.map((name, i) => {
         return { name, 'img': championImages[i] }
       })
-      console.log(nameAndImg)
+      // console.log(nameAndImg)
       res.render("index/champions", { nameAndImg });
     })
     .catch(e => console.log(e))
@@ -36,7 +36,7 @@ router.get("/randomPick", roleValidation(ROLES), (req, res, next) => {
     .then(randomChamp => {
       const image = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${randomChamp}_0.jpg`
       const itemsAndChamp = { items, randomChamp, image }
-      console.log(itemsAndChamp)
+      // console.log(itemsAndChamp)
       res.render('index/random', itemsAndChamp)
     })
     .catch(e => console.log(e))
@@ -47,4 +47,21 @@ router.get("/weeklyRotation", roleValidation(ROLES), (req, res, next) => {
   res.render("index/rotation");
 });
 
+router.get("/champion-details/:championName", roleValidation(ROLES), (req, res, next) => {
+  let champName = req.params.championName
+  DDragonService
+    .getDetailsChampions(champName)
+    .then((champion) => {
+      const image = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champName}_0.jpg`
+      let oneChampion = champion[champName]
+      let championData = { image, oneChampion }
+      console.log(championData)
+      res.render("index/champion-details", championData)
+    })
+    .catch((err) => next(err));
+})
+
 module.exports = router;
+
+
+

@@ -1,14 +1,20 @@
+<<<<<<< HEAD
 {{!-- {{#if itemsAndChamp}} --}}
 <div class="row row-cols-1 row-cols-md-2 g-4">
+=======
+<div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center">
+>>>>>>> f0696563c59d33a785e3eef0a72fbcb523b8113d
     <div class="col">
-        <div class="card">
-            <h1>{{randomChamp.[0]}}</h1>
+        <div class="card text-center">
+            <h1 class="text-danger">{{randomChamp.[0]}}</h1>
             <img src="{{image}}" class="card-img-top" alt="champImage">
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-around">
                 {{#each items}}
                 <img src="{{this}}" alt="image">
                 {{/each}}
             </div>
+            <input class="btn btn-dark" type="button" value="New Random Champion"
+                onClick="document.location.reload(true)">
         </div>
     </div>
 </div>

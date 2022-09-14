@@ -5,7 +5,7 @@ class apiRiotService {
         this.axios = axios.create({
             baseURL: 'https://euw1.api.riotgames.com/lol',
             headers: {
-                "X-Riot-Token": "RGAPI-e17b6639-1f2b-4522-a3c1-468cbe00de8c"
+                "X-Riot-Token": "RGAPI-3d6ae0d3-0014-4d0e-bef4-920ff0d7fdeb"
             },
         });
     }

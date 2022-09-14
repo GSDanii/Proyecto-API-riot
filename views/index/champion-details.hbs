@@ -1,4 +1,11 @@
-<p>{{oneChampion.name}}</p>
-<p>{{oneChampion.title}}</p>
-<p>{{oneChampion.lore}}</p>
-<img src="{{this.image}}" class="img-fluid" alt="...">
+<div class="row g-0 bg-light position-relative">
+    <div class="col-md-6 mb-md-0 p-md-4">
+        <img src="{{this.image}}" class="w-100" alt="champImage">
+    </div>
+    <div class="col-md-6 p-4 ps-md-0">
+        <h2 class="mt-0">{{oneChampion.name}}</h2>
+        <h4 class="mt-0">{{oneChampion.title}}</h4>
+        <p>{{oneChampion.lore}} </p>
+        <a href="/championsList" class="btn btn-dark">Go back</a>
+    </div>
+</div>

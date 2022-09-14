@@ -19,6 +19,7 @@ class DDragonService {
     }
 
 
+
     getChampion() {
         return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
             const champions = res.data.data

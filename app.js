@@ -30,6 +30,7 @@ app.use((req, res, next) => {
     if (req.session.user) {
         app.locals.id = req.session.user._id;
         app.locals.username = req.session.user.username
+        app.locals.summoner = req.session.user.summonerName
     } else {
         app.locals.id = null;
         app.locals.username = null

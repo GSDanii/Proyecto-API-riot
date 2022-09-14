@@ -2,14 +2,30 @@ const router = require("express").Router();
 const UserModel = require('../models/User.model')
 const { roleValidation, userValidation } = require('../middlewares/roles.middlewares');
 const { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, ROLES } = require("../const/user.const")
-
+const apiRiotService = require("../services/api-riot.service")
 
 //GET ROUTES
 
 router.get('/:id', roleValidation(ROLES), (req, res, next) => {
-    UserModel.findById(req.params.id)
+    let lvl
+    let info
+    apiRiotService
+        .getSummonerInfo(req.session.user.summonerName)
+        .then(userInfo => {
+            const { summonerLevel, id } = userInfo
+            lvl = summonerLevel
+            return apiRiotService.getSummonerElo(id)
+        })
+        .then((infoElo) => {
+
+            info = infoElo
+            console.log(lvl)
+            return UserModel.findById(req.params.id)
+        })
         .then((foundUser) => {
-            res.render('profile/myProfile', foundUser)
+            let infoUser = { lvl, info, foundUser }
+            console.log(infoUser)
+            res.render('profile/myProfile', infoUser)
         })
         .catch((err) => next(err));
 })

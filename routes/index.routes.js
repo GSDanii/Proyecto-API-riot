@@ -4,6 +4,7 @@ const { roleValidation, userValidation } = require('../middlewares/roles.middlew
 const { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, ROLES } = require("../const/user.const")
 const DDragonService = require("../services/ddragon.service");
 
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");

@@ -1,4 +1,4 @@
-<h2 class="text-center">{{username}} Profile</h2>
+<h2 class="text-center">{{foundUser.username}} Profile</h2>
 <div class="d-flex flex-row justify-content-around mt-4">
     <div class="card" style="width: 18rem;">
         {{!-- <img src={{profileImg}}> --}}
@@ -6,7 +6,15 @@
     </div>
     <div class="card" style="width: 18rem;">
         {{!-- <img src={{profileImg}}> --}}
-        <p class="text-center"> {{summonerName}}</p>
+        <p class="text-center"> {{foundUser.summonerName}} Level: {{lvl}}</p>
+        <ul>
+            <li>{{info.[0].tier}} {{info.[0].rank}}</li>
+            <li>League Points: {{info.[0].leaguePoints}}</li>
+            <li>Wins: {{info.[0].wins}}</li>
+            <li>Losses: {{info.[0].losses}}</li>
+
+
+        </ul>
     </div>
 </div>
 <a href="/profile/{{_id}}/update" class="card-link">Update</a>

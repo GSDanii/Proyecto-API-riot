@@ -12,6 +12,8 @@ class DDragonService {
         return this.axios.get('/12.17.1/data/es_ES/item.json').then((res) => {
             const itemsObj = res.data.data
             let keys = Object.keys(itemsObj)
+            keys = keys.filter((key) => key > 3000)
+            console.log('filtrado', keys)
             return getSixItems(keys)
         })
     }
@@ -23,6 +25,14 @@ class DDragonService {
             let keys = Object.keys(champions)
             return getOneChamp(keys)
 
+        })
+    }
+
+    getAllChampions() {
+        return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
+            const champions = res.data.data
+            let keys = Object.keys(champions)
+            return keys
         })
     }
 }

@@ -13,6 +13,19 @@
                 onClick="document.location.reload(true)">
         </div>
     </div>
+    <div class="mb-3">
+        <form action="/forum/post" method="post">
+            <label for="" class="form-label">Title:</label>
+            <input type="text" name="title" class="form-control w-25">
+            <label for="exampleFormControlTextarea1" class="form-label">Post your RandomPick!</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
+            {{#each items}}
+            <input type="hidden" class="form-control" name="imgItems" value="{{this}}"></input>
+            {{/each}}
+            <input type="hidden" class="form-control" name="imgChamp" value='{{image}}'></input>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
 {{!-- {{/if}} --}}
 

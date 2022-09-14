@@ -10,4 +10,7 @@ module.exports = app => {
     const profileRouter = require("./profile.routes");
     app.use("/profile", profileRouter);
 
+    const forumRouter = require('./forum.routes')
+    app.use('/forum', forumRouter)
+
 }

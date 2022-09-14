@@ -18,7 +18,7 @@ router.get("/championsList", roleValidation(ROLES), (req, res, next) => {
       let nameAndImg = champions.map((name, i) => {
         return { name, 'img': championImages[i] }
       })
-      console.log(nameAndImg)
+      // console.log(nameAndImg)
       res.render("index/champions", { nameAndImg });
     })
     .catch(e => console.log(e))

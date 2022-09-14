@@ -20,12 +20,12 @@ router.get('/:id', roleValidation(ROLES), (req, res, next) => {
         .then((infoElo) => {
 
             info = infoElo
-            console.log(lvl)
+            // console.log(lvl)
             return UserModel.findById(req.params.id)
         })
         .then((foundUser) => {
             let infoUser = { lvl, info, foundUser }
-            console.log(infoUser)
+            // console.log(infoUser)
             res.render('profile/myProfile', infoUser)
         })
         .catch((err) => next(err));

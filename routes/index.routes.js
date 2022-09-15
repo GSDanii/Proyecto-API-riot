@@ -20,7 +20,6 @@ router.get("/championsList", roleValidation(ROLES), (req, res, next) => {
       let nameAndImg = champions.map((name, i) => {
         return { name, 'img': championImages[i] }
       })
-      // console.log(nameAndImg)
       res.render("index/champions", { nameAndImg });
     })
     .catch(e => console.log(e))
@@ -38,7 +37,6 @@ router.get("/randomPick", roleValidation(ROLES), (req, res, next) => {
     .then(randomChamp => {
       const image = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${randomChamp}_0.jpg`
       const itemsAndChamp = { items, randomChamp, image }
-      // console.log(itemsAndChamp)
       res.render('index/random', itemsAndChamp)
     })
     .catch(e => console.log(e))
@@ -46,37 +44,36 @@ router.get("/randomPick", roleValidation(ROLES), (req, res, next) => {
 });
 
 router.get("/weeklyRotation", roleValidation(ROLES), (req, res, next) => {
-  let ids
-  let infoChampion
+  let champIDs
   apiRiotService
     .getWeeklyChampion()
-    .then((id) => {
-      ids = id
+    .then(ids => {
+      champIDs = ids
       return DDragonService.getChampionInfo()
     })
     .then((champions) => {
-      infoChampion = champions
-      console.log(getChampionId.toString())
-      let prueba = getChampionId(ids, champions)
-      const images = prueba.map((e) => `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${e}_0.jpg`)
-      let nameAndImg = prueba.map((name, i) => {
+      let champNames = getChampionId(champIDs, champions)
+      const images = champNames.map((champName) => `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champName}_0.jpg`)
+      let nameAndImg = champNames.map((name, i) => {
         return { name, 'img': images[i] }
       })
-      console.log(nameAndImg)
       res.render("index/rotation", { nameAndImg });
     })
     .catch((err) => next(err));
 });
 
 router.get("/champion-details/:championName", roleValidation(ROLES), (req, res, next) => {
-  let champName = req.params.championName
+
+  const { championName } = req.params
+
   DDragonService
-    .getDetailsChampions(champName)
-    .then((champion) => {
-      const image = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champName}_0.jpg`
-      let oneChampion = champion[champName]
-      let championData = { image, oneChampion }
-      console.log(championData)
+    .getDetailsChampions(championName)
+    .then((championDetails) => {
+      const image = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg`
+      let oneChampion = championDetails[championName]
+      const { name, title, lore, allytips, enemytips, passive, stats } = oneChampion
+
+      let championData = { image, name, title, lore, allytips, enemytips, passive }
       res.render("index/champion-details", championData)
     })
     .catch((err) => next(err));

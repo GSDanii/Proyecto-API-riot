@@ -1,14 +1,15 @@
 const axios = require('axios');
-
+const API_KEY = process.env.API_KEY
 class apiRiotService {
     constructor() {
         this.axios = axios.create({
             baseURL: 'https://euw1.api.riotgames.com/lol',
             headers: {
-                "X-Riot-Token": "RGAPI-6d43aafd-5235-413d-bb01-d9247cf99309"
+                "X-Riot-Token": API_KEY
             },
         });
     }
+
     getSummonerInfo(summonerName) {
         let encondeName = encodeURIComponent(summonerName)
         return this.axios

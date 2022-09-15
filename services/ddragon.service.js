@@ -8,23 +8,24 @@ class DDragonService {
             baseURL: 'http://ddragon.leagueoflegends.com/cdn'
         });
     }
+
     getItemKeys() {
-        return this.axios.get('/12.17.1/data/es_ES/item.json').then((res) => {
-            const itemsObj = res.data.data
+        return this.axios.get('/12.17.1/data/es_ES/item.json').then(({ data }) => {
+            const itemsObj = data.data
             let keys = Object.keys(itemsObj)
-            keys = keys.filter((key) => key > 3000 && key != (3070 || 3330 || 7050))
-            console.log('filtrado', keys)
+            keys = keys.filter(key => {
+                return key > 3000
+            })
+            console.log(keys)
             return getSixItems(keys)
         })
     }
 
-
-
     getChampion() {
         return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
             const champions = res.data.data
-            let keys = Object.keys(champions)
-            return getOneChamp(keys)
+            let championKeys = Object.keys(champions)
+            return getOneChamp(championKeys)
 
         })
     }

@@ -50,6 +50,11 @@
                      <li><a class="dropdown-item" href="/championsList">Champions</a></li>
                   </ul>
                </li>
+               {{#if isAdmin}}
+               <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/profile/summoners">Admin</a>
+               </li>
+               {{/if}}
             </ul>
          </div>
       </div>

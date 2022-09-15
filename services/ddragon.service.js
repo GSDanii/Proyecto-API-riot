@@ -12,7 +12,7 @@ class DDragonService {
         return this.axios.get('/12.17.1/data/es_ES/item.json').then((res) => {
             const itemsObj = res.data.data
             let keys = Object.keys(itemsObj)
-            keys = keys.filter((key) => key > 3000 && key !== (3070, 3330, 7050))
+            keys = keys.filter((key) => key > 3000 && key != (3330))
             console.log('filtrado', keys)
             return getSixItems(keys)
         })

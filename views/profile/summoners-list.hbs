@@ -1,0 +1,17 @@
+<h1>Summoners List</h1>
+<div class="d-flex flex-row justify-content-around mt-4">
+    {{#each allSummoners}}
+    <div class="card" style="width: 18rem;">
+        <div class="d-flex justify-content-center">
+            <img class="img-fluid w-25" src="/images/LogoDorado.png" alt="Summoner">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title font-weight-bold">Username: {{username}}</h5>
+            <p class="card-text font-weight-bold"> Summoner Name: {{summonerName}}</p>
+            <p class="card-text font-weight-bold"> Role: <span class="text-danger font-italic">{{role}}</span> </p>
+        </div>
+        <a href="/profile/{{_id}}/delete" class="card-link">Delete</a>
+        <a href="/profile/{{_id}}/adminUpdate" class="card-link">Update</a>
+    </div>
+    {{/each}}
+</div>

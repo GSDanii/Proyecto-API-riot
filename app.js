@@ -31,9 +31,11 @@ app.use((req, res, next) => {
         app.locals.id = req.session.user._id;
         app.locals.username = req.session.user.username
         app.locals.summoner = req.session.user.summonerName
+        app.locals.isAdmin = req.session.user.role === 'CHALLENGER'
     } else {
         app.locals.id = null;
         app.locals.username = null
+        app.locals.isAdmin = null
     }
     next();
 })

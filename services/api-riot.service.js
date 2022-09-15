@@ -1,9 +1,6 @@
 const axios = require('axios');
 const API_KEY = process.env.API_KEY
-<<<<<<< HEAD
 
-=======
->>>>>>> aeffa1b19babfa48328a10d2bff7d7336f1bbcfb
 class apiRiotService {
     constructor() {
         this.axios = axios.create({

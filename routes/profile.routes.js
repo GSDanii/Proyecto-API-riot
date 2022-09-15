@@ -6,33 +6,31 @@ const apiRiotService = require("../services/api-riot.service")
 
 //GET ROUTES
 
-router.get('/summoners', roleValidation(ROLES), (req, res, next) => {
-    UserModel.find()
-        .then((allSummoners) => {
-            res.render('profile/summoners-list', { allSummoners });
-        })
+router.get('/summoners', roleValidation([CHALLENGER]), (req, res, next) => {
+    UserModel
+        .find()
+        .then(allSummoners => res.render('profile/summoners-list', { allSummoners }))
         .catch((err) => next(err));
 });
 
-router.get('/:id', roleValidation(ROLES), (req, res, next) => {
+router.get('/:id', userValidation(ROLES), (req, res, next) => {
     let lvl
     let info
+    const { id: userID } = req.params
+
     apiRiotService
         .getSummonerInfo(req.session.user.summonerName)
         .then(userInfo => {
-            const { summonerLevel, id } = userInfo
+            const { summonerLevel, id: summonerID } = userInfo
             lvl = summonerLevel
-            return apiRiotService.getSummonerElo(id)
+            return apiRiotService.getSummonerElo(summonerID)
         })
-        .then((infoElo) => {
-
+        .then(infoElo => {
             info = infoElo
-            // console.log(lvl)
-            return UserModel.findById(req.params.id)
+            return UserModel.findById(userID)
         })
-        .then((foundUser) => {
+        .then(foundUser => {
             let infoUser = { lvl, info, foundUser }
-            // console.log(infoUser)
             res.render('profile/myProfile', infoUser)
         })
         .catch((err) => next(err));
@@ -70,10 +68,9 @@ router.post("/:id/adminUpdate", (req, res, next) => {
     const { username, summonerName, role } = req.body
 
     UserModel.findByIdAndUpdate(req.params.id, { username, summonerName, role })
-        .then((user) => res.redirect(`/profile/summoners`))
+        .then(() => res.redirect(`/profile/summoners`))
         .catch((err) => next(err))
 })
-
 
 module.exports = router
 

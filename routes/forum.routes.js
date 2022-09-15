@@ -1,15 +1,12 @@
 const router = require("express").Router();
-const UserModel = require('../models/User.model')
-const PostModel = require('../models/Post.model')
-const ComentModel = require('../models/Comment.model')
-const { roleValidation, userValidation } = require('../middlewares/roles.middlewares');
-const { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, ROLES } = require("../const/user.const")
+const { CHALLENGER } = require("../const/user.const")
 const { checkRoleUser, checkUser } = require('../utils/checkUsers')
-
+const PostModel = require('../models/Post.model')
 
 router.get('/', (req, res, next) => {
-    PostModel.find()
-        .then((AllPosts) => res.render('index/forum', { AllPosts }))
+    PostModel
+        .find()
+        .then(AllPosts => res.render('index/forum', { AllPosts }))
         .catch((err) => next(err))
 })
 
@@ -21,23 +18,18 @@ router.get('/:idPost/delete', (req, res, next) => {
 
 router.get('/:idPost', (req, res, next) => {
     let canView = false
-    PostModel.findById(req.params.idPost)
+    PostModel
+        .findById(req.params.idPost)
         .populate('user', 'username role -_id')
         .then((post) => {
             const { user } = req.session;
             if (checkUser(user.username, post.user.username) || checkRoleUser(user.role, CHALLENGER)) {
                 canView = true
             }
-            console.log({ post, canView })
             res.render('index/post-details', { post, canView })
         })
-
         .catch((err) => next(err))
 })
-
-
-
-
 
 router.post("/post", (req, res, next) => {
 
@@ -47,6 +39,5 @@ router.post("/post", (req, res, next) => {
         .then(() => res.redirect('/forum'))
         .catch((err) => next(err))
 })
-
 
 module.exports = router

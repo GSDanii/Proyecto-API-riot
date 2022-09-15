@@ -7,7 +7,6 @@ function getRandomKeys(itemFilter) {
         randomKeys.push(index)
     }
     return randomKeys
-
-
 }
+
 module.exports = getRandomKeys;

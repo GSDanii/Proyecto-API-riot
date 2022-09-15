@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require('bcryptjs');
 const { ROLES, IRON } = require('../const/user.const');
+const bcrypt = require('bcryptjs');
 const SALT = +process.env.SALT;
 
 const userSchema = new Schema(

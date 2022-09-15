@@ -19,6 +19,7 @@ const app = express();
 require("./config")(app);
 
 const session = require('./config/session.config');
+const { CHALLENGER } = require("./const/user.const");
 session(app);
 
 // default value for title local
@@ -35,11 +36,22 @@ app.use((req, res, next) => {
     } else {
         app.locals.id = null;
         app.locals.username = null
+        app.locals.summoner = null
         app.locals.isAdmin = null
     }
     next();
 })
 
+// app.use((req, res, next) => {
+//     if (req.session.user.username ===  || req.session.user.role === CHALLENGER) {
+//         app.locals.canView = true
+//     } else {
+//         app.locals.id = null;
+//         app.locals.username = null
+//         app.locals.summoner = null
+//     }
+//     next();
+// })
 // 👇 Start handling routes here
 require("./routes")(app)
 

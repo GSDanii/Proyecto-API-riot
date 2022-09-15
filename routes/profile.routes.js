@@ -8,7 +8,6 @@ const apiRiotService = require("../services/api-riot.service")
 
 router.get('/:id', roleValidation(ROLES), (req, res, next) => {
     let lvl
-
     let info
     apiRiotService
         .getSummonerInfo(req.session.user.summonerName)

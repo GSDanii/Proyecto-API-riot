@@ -3,6 +3,8 @@ const router = require("express").Router();
 const { roleValidation, userValidation } = require('../middlewares/roles.middlewares');
 const { IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, ROLES } = require("../const/user.const")
 const DDragonService = require("../services/ddragon.service");
+const apiRiotService = require("../services/api-riot.service")
+const getChampionId = require("../utils/getChampionId")
 
 
 /* GET home page */
@@ -44,7 +46,26 @@ router.get("/randomPick", roleValidation(ROLES), (req, res, next) => {
 });
 
 router.get("/weeklyRotation", roleValidation(ROLES), (req, res, next) => {
-  res.render("index/rotation");
+  let ids
+  let infoChampion
+  apiRiotService
+    .getWeeklyChampion()
+    .then((id) => {
+      ids = id
+      return DDragonService.getChampionInfo()
+    })
+    .then((champions) => {
+      infoChampion = champions
+      console.log(getChampionId.toString())
+      let prueba = getChampionId(ids, champions)
+      const images = prueba.map((e) => `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${e}_0.jpg`)
+      let nameAndImg = prueba.map((name, i) => {
+        return { name, 'img': images[i] }
+      })
+      console.log(nameAndImg)
+      res.render("index/rotation", { nameAndImg });
+    })
+    .catch((err) => next(err));
 });
 
 router.get("/champion-details/:championName", roleValidation(ROLES), (req, res, next) => {

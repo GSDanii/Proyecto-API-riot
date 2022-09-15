@@ -26,6 +26,15 @@ class apiRiotService {
             .catch(e => console.log(e))
     }
 
+    getWeeklyChampion() {
+        return this.axios
+            .get('/platform/v3/champion-rotations')
+            .then(({ data }) => {
+                let { freeChampionIds } = data
+                return freeChampionIds
+            })
+            .catch(e => console.log(e))
+    }
 }
 
 module.exports = new apiRiotService()

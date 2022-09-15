@@ -2,7 +2,7 @@
 <div class="d-flex flex-row justify-content-around mt-4">
     <div class="card" style="width: 18rem;">
         {{!-- <img src={{profileImg}}> --}}
-        <p class="text-center">This is {{username}} summoner profile</p>
+        <p class="text-center">This is {{foundUser.username}} summoner profile</p>
     </div>
     <div class="card" style="width: 18rem;">
         {{!-- <img src={{profileImg}}> --}}
@@ -17,5 +17,5 @@
         </ul>
     </div>
 </div>
-<a href="/profile/{{_id}}/update" class="card-link">Update</a>
-<a href="/profile/{{_id}}/delete" class="card-link">Delete</a>
+<a href="/profile/{{foundUser._id}}/update" class="card-link">Update</a>
+<a href="/profile/{{foundUser._id}}/delete" class="card-link">Delete</a>

@@ -43,6 +43,14 @@ class DDragonService {
             return champions
         })
     }
+
+    getChampionInfo() {
+        return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
+            const champions = res.data.data
+            return champions
+        })
+    }
+
 }
 
 module.exports = new DDragonService()

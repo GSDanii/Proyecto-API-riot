@@ -1,11 +1,10 @@
-<h2>Estas editando {{username}}</h2>
-
+<p class="text-light h3">You are editing <span class="text-warning">{{username}}</span> profile</p>
 
 <form action="/profile/{{_id}}/update" method="post">
     <div class="mb-3">
-        <label for="" class="form-label">username:</label>
+        <label for="" class="form-label text-light">username:</label>
         <input type="text" name="username" value="{{username}}" class="form-control w-25">
-        <label for="" class="form-label">summonerName:</label>
+        <label for="" class="form-label text-light">summonerName:</label>
         <input type="text" name="summonerName" value="{{summonerName}}" class="form-control w-25">
     </div>
     <button type="submit" class="btn btn-primary">Update!</button>

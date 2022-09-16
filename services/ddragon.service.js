@@ -10,7 +10,7 @@ class DDragonService {
     }
 
     getItemKeys() {
-        return this.axios.get('/12.17.1/data/es_ES/item.json').then(({ data }) => {
+        return this.axios.get('/12.17.1/data/en_US/item.json').then(({ data }) => {
             const itemsObj = data.data
             let keys = Object.keys(itemsObj)
             keys = keys.filter((key) => key > 3000 && key != 3070 && key != 3330 && key != 7050)
@@ -20,7 +20,7 @@ class DDragonService {
     }
 
     getChampion() {
-        return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
+        return this.axios.get('/12.17.1/data/en_US/champion.json').then((res) => {
             const champions = res.data.data
             let championKeys = Object.keys(champions)
             return getOneChamp(championKeys)
@@ -29,7 +29,7 @@ class DDragonService {
     }
 
     getAllChampions() {
-        return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
+        return this.axios.get('/12.17.1/data/en_US/champion.json').then((res) => {
             const champions = res.data.data
             let keys = Object.keys(champions)
             return keys
@@ -37,14 +37,14 @@ class DDragonService {
     }
 
     getDetailsChampions(name) {
-        return this.axios.get(`/12.17.1/data/es_ES/champion/${name}.json`).then((res) => {
+        return this.axios.get(`/12.17.1/data/en_US/champion/${name}.json`).then((res) => {
             const champions = res.data.data
             return champions
         })
     }
 
     getChampionInfo() {
-        return this.axios.get('/12.17.1/data/es_ES/champion.json').then((res) => {
+        return this.axios.get('/12.17.1/data/en_US/champion.json').then((res) => {
             const champions = res.data.data
             return champions
         })

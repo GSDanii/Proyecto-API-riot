@@ -1,6 +1,4 @@
-<h1>estas en post Details</h1>
-
-<div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center">
+<div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center mt-4">
     <div class="col">
         <div class="card text-center">
             <img src="{{post.imgChamp}}" class="card-img-top" alt="champImage">
@@ -18,8 +16,8 @@
         <div class="card-body">
             <p class="card-text">{{post.description}}</p>
         </div>
-        {{#if canView}}
-        <a class="btn btn-danger" href="{{post._id}}/delete">BORRA ESTA MIERDA</a>
-        {{/if}}
     </div>
+    {{#if canView}}
+    <a class="btn btn-danger" href="{{post._id}}/delete">DELETE POST</a>
+    {{/if}}
 </div>

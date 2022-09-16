@@ -14,7 +14,7 @@ const session = require('./config/session.config');
 
 session(app);
 
-const projectName = "Proyecto Api Riot";
+const projectName = "Random Legends";
 
 app.locals.appTitle = `${projectName}`;
 

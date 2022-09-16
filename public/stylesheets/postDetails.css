@@ -13,6 +13,8 @@
 }
 
 #lista li {
+    display: flex;
+    justify-content: center;
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;

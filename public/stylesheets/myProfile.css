@@ -17,3 +17,12 @@
 .profileCard {
     background-color: rgba(145, 74, 74, 0);
 }
+
+#profileUpdateImg {
+    background-image: url("https: //res.cloudinary.com/dalk1vcw9/image/upload/v1663318889/RoundedLogo_hhetzk.png");
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}

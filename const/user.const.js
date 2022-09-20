@@ -1,3 +1,18 @@
+// Yo haria un solo objecto
+// module.exports = {
+//     IRON : 'IRON',
+//     BRONZE : 'BRONZE',
+//     SILVER : 'SILVER',
+//     GOLD : 'GOLD',
+//     PLATINUM : 'PLATINUM',
+//     DIAMOND : 'DIAMOND',
+//     MASTER : 'MASTER',
+//     GRANDMASTER : 'GRANDMASTER',
+//     CHALLENGER : 'CHALLENGER',
+//     ROLES : [IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, MASTER, GRANDMASTER, CHALLENGER]
+// };
+
+
 const IRON = 'IRON';
 const BRONZE = 'BRONZE';
 const SILVER = 'SILVER';

@@ -4,7 +4,7 @@ const API_KEY = process.env.API_KEY
 class apiRiotService {
     constructor() {
         this.axios = axios.create({
-            baseURL: 'https://euw1.api.riotgames.com/lol',
+            baseURL: 'https://euw1.api.riotgames.com/lol', // rutas siempre en el archivo de .env , para poder usar rutas distintas en diferentes sitios
             headers: {
                 "X-Riot-Token": API_KEY
             },

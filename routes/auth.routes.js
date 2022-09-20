@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const UserModel = require("../models/User.model")
 
+// en vez de _next usar solo next, siempre misma sintaxis
 router.get('/signUp', (req, res, _next) => res.render('auth/signup'))
 
 router.get('/login', (req, res, next) => res.render('auth/login'))
@@ -10,6 +11,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/auth/login');
 });
 
+// Las rutas suelen ser tipo sign-up , usar el camel-case es un poco feo
 router.post('/signUp', (req, res) => {
     const { username, password, summonerName } = req.body;
 

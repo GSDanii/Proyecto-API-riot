@@ -29,6 +29,7 @@ router.get('/:id', userValidation(ROLES), (req, res, next) => {
             info = infoElo
             return UserModel.findById(userID)
         })
+        // foundUser lo cambiaria simplemente por user o userDB
         .then(foundUser => {
             let infoUser = { lvl, info, foundUser }
             res.render('profile/myProfile', infoUser)
@@ -55,7 +56,8 @@ router.get("/:id/delete", (req, res, next) => {
 })
 
 //POST ROUTES
-
+// Si vais a actualizar, es mas apropiado usar PUT . POST son cosas nuevas, PUT es actualiyzar y asi ya no necesitais el /update
+// router.put('/:id')
 router.post("/:id/update", (req, res, next) => {
     const { username, summonerName } = req.body
 
@@ -64,6 +66,8 @@ router.post("/:id/update", (req, res, next) => {
         .catch((err) => next(err))
 })
 
+// Si los admin tienen otra ruta, deberia ser /admin/:id y no pobner lo de admin despues del id
+// router.put('/admin/:id')
 router.post("/:id/adminUpdate", (req, res, next) => {
     const { username, summonerName, role } = req.body
 
